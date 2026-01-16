@@ -34,3 +34,6 @@ _The evaluation criteria and scoring methodology for this challenge will be outl
 
 Love,  
 **The Geekster Crew** ❤️
+<p align="left">
+  <img src="../img/geekster_logo.png" alt="Geekster logo" width="25%">
+</p>
