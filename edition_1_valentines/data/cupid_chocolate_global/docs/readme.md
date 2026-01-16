@@ -9,6 +9,9 @@ This package provides a **global** star schema with **10,000 sales rows**, custo
 - Addresses are **plausible but synthetic** (street+number); not geocoded to real residences
 - Payments as **non-reversible test tokens** (no real PAN/IBAN)
 
+
+❗**CAN BE RELATED TO THE [GiftRecommender.csv](../../gifts/data/GiftRecommender.csv) BY customer_id from GiftRecommender.csv dataset**.
+
 ## Tables
 - DimProduct, DimCustomer, DimDate, DimStore, DimPromotion, DimSupplier
 - FactSales (10,000 rows)

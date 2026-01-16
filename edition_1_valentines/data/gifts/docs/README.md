@@ -5,7 +5,7 @@
 A synthetic, privacy‑safe dataset simulating global Valentine’s‑season shopping behavior.  
 Contains **10,000 user events** across browsing, carting, and purchasing Valentine‑themed products.  
 
-❗**CAN BE RELATED TO THE [DimCustomer.csv](../../../cupid_chocolate_global/data/DimCustomer.csv) BY customer_id from cupid_chocolate_global dataset**.
+❗**CAN BE RELATED TO THE [DimCustomer.csv](../../cupid_chocolate_global/data/DimCustomer.csv) BY customer_id from cupid_chocolate_global dataset**.
 
 ---
 
