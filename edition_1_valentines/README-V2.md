@@ -323,9 +323,6 @@ A: Absolutely! You can use public APIs, synthetic data, or other sources (respec
 **Q: Is there mentor support?**  
 A: No dedicated mentors, but collaboration and asking peers is encouraged!
 
-**Q: How do we submit our project?**  
-A: Your team decides the submission format. Just be ready to present!
-
 ---
 
 Love,  
