@@ -26,7 +26,7 @@ Your mission: Build a solution powered by **Microsoft technologies** that helps 
 
 ## 📅 Event Details
 
-| | |
+| | Detail |
 |---|---|
 | **Date** | February 6th, 2026 |
 | **Duration** | 5 hours |
