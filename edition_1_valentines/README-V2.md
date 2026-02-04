@@ -54,19 +54,17 @@ Each team must deliver:
 
 ### 1. Working Proof-of-Concept (PoC)
 - A functional demo that showcases your solution
-- Built using Microsoft technologies (cloud, local, or hybrid)
-- Focus on demonstrating core functionality over polish
+- Built using Microsoft technologies
 
 ### 2. Presentation / Pitch
-- **Duration**: 5-7 minutes per team
-- **Q&A**: 3-4 minutes for questions from the jury
+- **Presentation Duration**: 6 minutes per team
+- **Q&A**: 4 minutes for questions from the jury
 - **Format Options** (choose what works best for your team):
   - 📊 PowerPoint / Slides
   - 🎬 Live Demo
   - 🎥 Recorded Video
-  - 🎨 Mix of the above
 
-**Submission**: Your team decides the format and how to share your work with the judges.
+- **Submission**: Your team decides the format and how to share your work with the judges.
 
 ---
 
@@ -74,7 +72,7 @@ Each team must deliver:
 
 This hackathon is about learning, architecting, and designing solutions using **Microsoft technologies** with a focus on **AI & GenAI capabilities across the Microsoft stack**.
 
-### 💡 You Are Encouraged To Use:
+### 💡 Few Tech Stack Options (not limited to this):
 
 | Category | Technologies |
 |----------|-------------|
@@ -83,11 +81,6 @@ This hackathon is about learning, architecting, and designing solutions using **
 | **Low-Code / No-Code** | Power Platform (Power Apps, Power Automate, Power Pages) |
 | **Development** | Azure Functions, Logic Apps, GitHub Copilot, VS Code |
 | **Infrastructure** | Any Azure services that fit your solution |
-
-### 🎯 Best Practices
-- Apply **Azure Well-Architected Framework (WAF)** principles where applicable
-- Think about scalability, security, and user experience
-- Be creative with AI integrations!
 
 ### 🛠️ No Required Technologies
 There are no mandatory services — pick what fits your solution best!
@@ -104,12 +97,9 @@ Need a spark? Here are some ideas to get your creative juices flowing:
 | **🍫 Smart Chocolate Recommender** | GenAI-powered recommendation engine for the perfect chocolate gift | Azure AI Foundry, Power Apps | Cupid Chocolate Global, Gift Recommender |
 | **💑 Compatibility Copilot** | AI assistant that analyzes personality traits and predicts match success | Copilot Studio, Agent Framework | Matchmaking, Behavior Graph |
 | **📊 Valentine's Sales Dashboard** | Interactive dashboard with AI-generated insights and predictions | Power BI, Microsoft Fabric | Cupid Chocolate Global |
-| **🛡️ Cupid's Security Guardian** | Fraud detection system using AI to protect Valentine's transactions | Azure AI, Logic Apps | Broken Hearts Security |
 | **🌍 Global Love Tracker** | Real-time visualization of message delivery performance across regions | Power BI, Azure Maps | Love Notes Telemetry, Global Routing |
 | **🎁 Gift Concierge Bot** | Conversational AI bot that helps users find the perfect Valentine's gift | Copilot Studio, Power Virtual Agents | Gift Recommender, Supply Chain |
 | **📦 Supply Chain Optimizer** | Predict delays and optimize chocolate delivery routes | Power Automate, Azure Functions | Supply Chain, Cupid Chocolate Global |
-| **💬 Love Notes Moderator** | AI content moderation to keep Valentine's messages safe and sweet | Azure AI Content Safety, Logic Apps | Trust & Safety |
-| **🤖 Cupid's Meeting Assistant** | AI assistant for scheduling romantic dates across timezones | M365 Copilot, Power Automate | Modern Work Dynamics |
 | **💌 Valentine's Order App** | Low-code app for customers to place chocolate orders with AI suggestions | Power Apps, Copilot Studio | Cupid Chocolate Global |
 | **📈 Love Analytics Platform** | End-to-end data platform analyzing Valentine's trends | Microsoft Fabric, Power BI | All datasets |
 
@@ -307,7 +297,7 @@ There will be prizes for the team with the highest score! May the best Cupids wi
 
 ---
 
-## 🎭 Tone & Vibe
+## 🎭 Vibe
 
 This hackathon is a mix of **business** and **fun**! We encourage:
 - 💼 Solid technical solutions with real-world applicability
@@ -326,9 +316,6 @@ Don't be afraid to get silly with your theme — Cupid appreciates a good sense 
 
 **Q: Can I use pre-built code or templates?**  
 A: Yes! There are no restrictions on using existing code, libraries, or templates.
-
-**Q: Do we need to deploy to Azure?**  
-A: A working PoC is required. Deployment to Azure is encouraged but local demos with Azure services are acceptable.
 
 **Q: Can we use data from outside the provided datasets?**  
 A: Absolutely! You can use public APIs, synthetic data, or other sources (respecting licenses).
