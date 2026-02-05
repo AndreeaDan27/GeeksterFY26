@@ -69,6 +69,41 @@ Each team must deliver:
 
 ---
 
+## 🎯 Evaluation Criteria
+
+Your project will be judged by a panel of Microsoft Managers with technical backgrounds. Here's how you'll be scored:
+
+### Total: 100 Points
+
+| Category | Criteria | Points |
+|----------|----------|--------|
+| **1. Working PoC & Demo** | | **/35** |
+| | Functionality | /15 |
+| | Technical Depth | /20 |
+| **2. Creativity & Innovation** | | **/30** |
+| | Originality | /15 |
+| | Theme & Fun Factor | /15 |
+| **3. Business Acumen** | | **/15** |
+| | Problem-Solution Fit | /6 |
+| | Customer/Business Impact | /5 |
+| | Market Awareness | /4 |
+| **4. Presentation** | | **/20** |
+| | Narrative & Flow | /8 |
+| | Clarity & Conciseness | /6 |
+| | Q&A Handling | /6 |
+
+### 🏆 Prizes
+
+| Award | Description |
+|-------|-------------|
+| 🤦 **Best Blunder** | For memorable stories of why their idea is recommended — experienced or not! |
+| 🐑 **Mistake Shepherd** | For covering as many gaps as possible |
+| 💖 **Love Doctor** | Contributing to love in the world |
+| 🌷 **Polder-Proof Architecture** | For the solution that would survive Dutch scale, regulations, and rainy-day traffic |
+
+May the best Cupids win! 🎁
+---
+
 ## 🤖 Microsoft AI Solutions
 
 This hackathon is about learning, architecting, and designing solutions using **Microsoft technologies** with a focus on **AI & GenAI capabilities across the Microsoft stack**.
@@ -267,41 +302,7 @@ df = pd.read_csv('path/to/dataset.csv')
 
 **Remember**: There are no prescribed solutions. Use your imagination! ✨
 
----
 
-## 🎯 Evaluation Criteria
-
-Your project will be judged by a panel of Microsoft Managers with technical backgrounds. Here's how you'll be scored:
-
-### Total: 100 Points
-
-| Category | Criteria | Points |
-|----------|----------|--------|
-| **1. Working PoC & Demo** | | **/35** |
-| | Functionality | /15 |
-| | Technical Depth | /20 |
-| **2. Creativity & Innovation** | | **/30** |
-| | Originality | /15 |
-| | Theme & Fun Factor | /15 |
-| **3. Business Acumen** | | **/15** |
-| | Problem-Solution Fit | /6 |
-| | Customer/Business Impact | /5 |
-| | Market Awareness | /4 |
-| **4. Presentation** | | **/20** |
-| | Narrative & Flow | /8 |
-| | Clarity & Conciseness | /6 |
-| | Q&A Handling | /6 |
-
-### 🏆 Prizes
-
-| Award | Description |
-|-------|-------------|
-| 🤦 **Best Blunder** | For memorable stories of why their idea is recommended — experienced or not! |
-| 🐑 **Mistake Shepherd** | For covering as many gaps as possible |
-| 💖 **Love Doctor** | Contributing to love in the world |
-| 🌷 **Polder-Proof Architecture** | For the solution that would survive Dutch scale, regulations, and rainy-day traffic |
-
-May the best Cupids win! 🎁
 
 ---
 
