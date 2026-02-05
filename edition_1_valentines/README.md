@@ -281,9 +281,8 @@ Your project will be judged by a panel of Microsoft Managers with technical back
 | | Functionality | /15 |
 | | Technical Depth | /20 |
 | **2. Creativity & Innovation** | | **/30** |
-| | Originality | /12 |
-| | Creative Tech Use | /10 |
-| | Theme & Fun Factor | /8 |
+| | Originality | /15 |
+| | Theme & Fun Factor | /15 |
 | **3. Business Acumen** | | **/15** |
 | | Problem-Solution Fit | /6 |
 | | Customer/Business Impact | /5 |
