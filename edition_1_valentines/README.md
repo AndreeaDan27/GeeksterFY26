@@ -56,6 +56,7 @@ Each team must deliver:
 ### 1. Working Proof-of-Concept (PoC)
 - A functional demo that showcases your solution
 - Built using Microsoft technologies
+- 🎒 What did you learn new!
 
 ### 2. Presentation / Pitch
 - **Presentation Duration**: 4 minutes per team
@@ -79,7 +80,7 @@ Your project will be judged by a panel of Microsoft Managers with technical back
 |----------|----------|--------|
 | **1. Working PoC & Demo** | | **/35** |
 | | Functionality | /15 |
-| | Technical Depth | /20 |
+| | Technical Depth/Learning | /20 |
 | **2. Creativity & Innovation** | | **/30** |
 | | Originality | /15 |
 | | Theme & Fun Factor | /15 |
