@@ -20,7 +20,7 @@ Join us on a sweet journey through the world of Cupid Chocolate Company as we ex
 
 **"Help Cupid Provide Great Experiences for Valentine's Day"**
 
-Your mission: Build a solution powered by **Microsoft technologies** that helps Cupid deliver unforgettable Valentine's Day experiences. Think romance, chocolates, matchmaking, gifts, or anything that makes hearts flutter! 💘
+Your mission: Build a solution powered by **Microsoft technologies** that helps Cupid deliver unforgettable Valentine's Day experiences. Think romance, chocolates, matchmaking, gifts, or anything that **makes hearts flutter**! 💘
 
 ---
 
@@ -142,7 +142,7 @@ Need a spark? Here are some ideas to get your creative juices flowing:
 | **💌 Valentine's Order App** | Low-code app for customers to place chocolate orders with AI suggestions | Power Apps, Copilot Studio | Cupid Chocolate Global |
 | **📈 Love Analytics Platform** | End-to-end data platform analyzing Valentine's trends | Microsoft Fabric, Power BI | All datasets |
 
-**Remember**: These are just starting points. Mix ideas, combine datasets, or come up with something completely new! The weirder, the better. 🦄
+**Remember**: These are just starting points. Mix ideas, combine datasets, or come up with something completely new! **The weirder, the better**. 🦄
 
 ---
 
