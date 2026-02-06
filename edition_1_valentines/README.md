@@ -82,8 +82,9 @@ Your project will be judged by a panel of Microsoft Managers with technical back
 | | Functionality | /15 |
 | | Technical Depth/Learning | /20 |
 | **2. Creativity & Innovation** | | **/30** |
-| | Originality | /15 |
-| | Theme & Fun Factor | /15 |
+| | Originality | /10 |
+| | Theme & Fun Factor | /10 |
+| | Mistakes made | /10 |
 | **3. Business Acumen** | | **/15** |
 | | Problem-Solution Fit | /6 |
 | | Customer/Business Impact | /5 |
@@ -98,7 +99,7 @@ Your project will be judged by a panel of Microsoft Managers with technical back
 | Award | Description |
 |-------|-------------|
 | 🤦 **Best Blunder** | For memorable stories of why their idea is recommended — experienced or not! |
-| 🐑 **Mistake Shepherd** | For covering as many gaps as possible |
+| 🐑 **Mistake Shepherd** | For gathering as many mistakes and learnings as possible |
 | 💖 **Love Doctor** | Contributing to love in the world |
 | 🌷 **Polder-Proof Architecture** | For the solution that would survive Dutch scale, regulations, and rainy-day traffic |
 
