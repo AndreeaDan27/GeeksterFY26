@@ -9,9 +9,9 @@ namespace CoupleChocApi.Services;
 /// signals, age-preference fit, and region proximity into a composite
 /// compatibility score for every possible couple in the matchmaking data.
 /// </summary>
-public class MatchingService
+public class MatchingService : IMatchingService
 {
-    private readonly DataService _data;
+    private readonly IDataService _data;
 
     // Weights
     private const double WOcean = 0.30;
@@ -24,7 +24,7 @@ public class MatchingService
     // Cached leaderboard
     private List<CoupleResult>? _cachedLeaderboard;
 
-    public MatchingService(DataService data)
+    public MatchingService(IDataService data)
     {
         _data = data;
     }

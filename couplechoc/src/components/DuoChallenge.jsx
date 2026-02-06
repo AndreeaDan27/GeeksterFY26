@@ -1,20 +1,7 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { getChallenge, getQuest } from "../services/api";
-
-const MarkdownComponents = {
-  h1: ({ children }) => <h2 className="md-heading">{children}</h2>,
-  h2: ({ children }) => <h3 className="md-heading">{children}</h3>,
-  h3: ({ children }) => <h4 className="md-heading">{children}</h4>,
-  p: ({ children }) => <p className="md-paragraph">{children}</p>,
-  ul: ({ children }) => <ul className="md-list">{children}</ul>,
-  ol: ({ children }) => <ol className="md-list md-list-ordered">{children}</ol>,
-  li: ({ children }) => <li className="md-list-item">{children}</li>,
-  strong: ({ children }) => <strong className="md-bold">{children}</strong>,
-  em: ({ children }) => <em className="md-italic">{children}</em>,
-  blockquote: ({ children }) => <blockquote className="md-blockquote">{children}</blockquote>,
-  hr: () => <hr className="md-divider" />,
-};
+import { MarkdownComponents } from "./shared/MarkdownRenderers";
 
 export default function DuoChallenge({ player1, player2, onComplete, addHighlight }) {
   const [round, setRound] = useState(0);

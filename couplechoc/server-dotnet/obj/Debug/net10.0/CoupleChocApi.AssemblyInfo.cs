@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CoupleChocApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da1db0c195a6355a5abc4d11af298011559c6947")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc857fc751a036d128c477bd4f5875bdcebef108")]
 [assembly: System.Reflection.AssemblyProductAttribute("CoupleChocApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CoupleChocApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

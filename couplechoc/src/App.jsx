@@ -11,7 +11,6 @@ const PHASES = ["welcome", "leaderboard", "pairing", "memory"];
 export default function App() {
   const [phase, setPhase] = useState("welcome");
   const [players, setPlayers] = useState({ player1: null, player2: null });
-  const [compatScore, setCompatScore] = useState(null);
   const [highlights, setHighlights] = useState([]);
   const [showChat, setShowChat] = useState(false);
 
@@ -57,7 +56,6 @@ export default function App() {
           <CupidLeaderboard
             onSelect={(p1, p2, score) => {
               setPlayers({ player1: p1, player2: p2 });
-              setCompatScore(score);
               addHighlight(`${p1.name} & ${p2.name} matched with ${score}% compatibility`);
               next();
             }}
@@ -81,7 +79,6 @@ export default function App() {
             onRestart={() => {
               setPhase("welcome");
               setPlayers({ player1: null, player2: null });
-              setCompatScore(null);
               setHighlights([]);
             }}
           />

@@ -2,20 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import { getMemoryCard } from "../services/api";
 import Confetti from "react-confetti";
-
-const MarkdownComponents = {
-  h1: ({ children }) => <h2 className="memory-md-heading">{children}</h2>,
-  h2: ({ children }) => <h3 className="memory-md-heading">{children}</h3>,
-  h3: ({ children }) => <h4 className="memory-md-heading">{children}</h4>,
-  p: ({ children }) => <p className="memory-md-paragraph">{children}</p>,
-  ul: ({ children }) => <ul className="memory-md-list">{children}</ul>,
-  ol: ({ children }) => <ol className="memory-md-list">{children}</ol>,
-  li: ({ children }) => <li className="memory-md-list-item">{children}</li>,
-  strong: ({ children }) => <strong className="memory-md-bold">{children}</strong>,
-  em: ({ children }) => <em className="memory-md-italic">{children}</em>,
-  blockquote: ({ children }) => <blockquote className="memory-md-blockquote">{children}</blockquote>,
-  hr: () => <hr className="memory-md-divider" />,
-};
+import { MemoryMarkdownComponents } from "./shared/MarkdownRenderers";
 
 export default function MemoryCard({ player1, player2, highlights, onRestart }) {
   const [card, setCard] = useState(null);
@@ -93,7 +80,7 @@ export default function MemoryCard({ player1, player2, highlights, onRestart }) 
               </div>
 
               <div className="memory-card-content">
-                <ReactMarkdown components={MarkdownComponents}>
+                <ReactMarkdown components={MemoryMarkdownComponents}>
                   {card}
                 </ReactMarkdown>
               </div>

@@ -1,15 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { sendChat } from "../services/api";
-
-const ChatMarkdown = {
-  p: ({ children }) => <span className="chat-md-p">{children}</span>,
-  strong: ({ children }) => <strong>{children}</strong>,
-  em: ({ children }) => <em>{children}</em>,
-  ul: ({ children }) => <ul className="chat-md-list">{children}</ul>,
-  ol: ({ children }) => <ol className="chat-md-list">{children}</ol>,
-  li: ({ children }) => <li>{children}</li>,
-};
+import { ChatMarkdownComponents } from "./shared/MarkdownRenderers";
 
 export default function ChatBubble({ isOpen, onToggle, player1, player2 }) {
   const [messages, setMessages] = useState([
@@ -84,7 +76,7 @@ export default function ChatBubble({ isOpen, onToggle, player1, player2 }) {
             className={`chat-msg ${msg.role === "user" ? "chat-user" : "chat-bot"}`}
           >
             {msg.role === "assistant" ? (
-              <ReactMarkdown components={ChatMarkdown}>{msg.content}</ReactMarkdown>
+              <ReactMarkdown components={ChatMarkdownComponents}>{msg.content}</ReactMarkdown>
             ) : (
               msg.content
             )}

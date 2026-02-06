@@ -52,27 +52,6 @@ export const getPairing = (player1, player2) =>
     body: JSON.stringify({ player1, player2 }),
   });
 
-export const getChallenge = (player1Name, player2Name, round, previousChallenges) =>
-  fetchJson(`${API_BASE}/challenge`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ player1Name, player2Name, round, previousChallenges }),
-  });
-
-export const getQuest = (player1Name, player2Name, questNumber) =>
-  fetchJson(`${API_BASE}/quest`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ player1Name, player2Name, questNumber }),
-  });
-
-export const getGiftRecommendation = (recipientProfile, budget, occasion) =>
-  fetchJson(`${API_BASE}/gift-recommend`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ recipientProfile, budget, occasion }),
-  });
-
 export const getConversationPrompt = () =>
   fetchJson(`${API_BASE}/conversation-prompt`, {
     method: "POST",

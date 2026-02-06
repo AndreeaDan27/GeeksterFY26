@@ -5,7 +5,7 @@ using OpenAI.Chat;
 
 namespace CoupleChocApi.Services;
 
-public class OpenAIService
+public class OpenAIService : IOpenAIService
 {
     private readonly Lazy<AzureOpenAIClient> _client;
     private readonly string _deployment;
