@@ -5,7 +5,8 @@ import express from "express";
 import { parse } from "csv-parse/sync";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT = path.resolve(__dirname, "..");
+// File lives in edition_1_valentines/cupidos/TheAbandoned; repo root is three levels up.
+const REPO_ROOT = path.resolve(__dirname, "..", "..", "..");
 const DATA_PATH = path.join(
   REPO_ROOT,
   "edition_1_valentines",
@@ -13,6 +14,14 @@ const DATA_PATH = path.join(
   "cupid_matchmaking",
   "data",
   "dataset_cupid_matchmaking.csv"
+);
+const TELEMETRY_PATH = path.join(
+  REPO_ROOT,
+  "edition_1_valentines",
+  "data",
+  "love_notes_telemetry",
+  "data",
+  "dataset_love_notes_telemetry.csv"
 );
 
 const TRAIT_COLS = [
@@ -28,6 +37,8 @@ const DB_RULES = {
   different_timezone: (self, other) => self.location_region === other.location_region,
   age_gap: (self, other) => Math.abs(self.age - other.age) <= 10,
 };
+
+const telemetryStats = loadTelemetry();
 
 // Anchor lat/lon for regions (approximate city centroids)
 const REGION_COORDS = {
@@ -48,6 +59,43 @@ function splitAndStrip(value) {
     .split(",")
     .map((v) => v.trim())
     .filter(Boolean);
+}
+
+function normalizeRegion(name) {
+  return String(name || "")
+    .toLowerCase()
+    .replace(/\s+/g, "")
+    .replace(/_/g, "");
+}
+
+function loadTelemetry() {
+  if (!fs.existsSync(TELEMETRY_PATH)) return new Map();
+  const csvText = fs.readFileSync(TELEMETRY_PATH, "utf8");
+  const records = parse(csvText, { columns: true, skip_empty_lines: true, trim: true });
+  const stats = new Map();
+
+  const statusWeight = (status) => {
+    const s = String(status || "").toLowerCase();
+    if (s === "delivered") return 1;
+    if (s === "retried") return 0.7;
+    if (s === "pending") return 0.4;
+    return 0; // failed or unknown
+  };
+
+  for (const row of records) {
+    const origin = normalizeRegion(row.region_origin);
+    const dest = normalizeRegion(row.region_destination);
+    if (!origin || !dest) continue;
+    const key = `${origin}->${dest}`;
+    const entry = stats.get(key) || { count: 0, sumLatency: 0, sumRetries: 0, sumReliability: 0 };
+    entry.count += 1;
+    entry.sumLatency += Number(row.latency_ms) || 0;
+    entry.sumRetries += Number(row.retry_count) || 0;
+    entry.sumReliability += statusWeight(row.delivery_status);
+    stats.set(key, entry);
+  }
+
+  return stats;
 }
 
 function loadData() {
@@ -106,18 +154,54 @@ function sentimentAlignment(a, b) {
   return Math.max(0, 1 - Math.abs(a - b) / 2);
 }
 
+function clamp01(x) {
+  return Math.max(0, Math.min(1, x));
+}
+
 function regionBonus(a, b) {
+  const na = normalizeRegion(a);
+  const nb = normalizeRegion(b);
+  const key1 = `${na}->${nb}`;
+  const key2 = `${nb}->${na}`;
+  const entries = [];
+  if (telemetryStats.has(key1)) entries.push(telemetryStats.get(key1));
+  if (telemetryStats.has(key2)) entries.push(telemetryStats.get(key2));
+
+  if (entries.length) {
+    const merged = entries.reduce(
+      (acc, e) => {
+        acc.count += e.count;
+        acc.sumLatency += e.sumLatency;
+        acc.sumRetries += e.sumRetries;
+        acc.sumReliability += e.sumReliability;
+        return acc;
+      },
+      { count: 0, sumLatency: 0, sumRetries: 0, sumReliability: 0 }
+    );
+    const avgLatency = merged.sumLatency / merged.count;
+    const avgRetries = merged.sumRetries / merged.count;
+    const avgReliability = merged.sumReliability / merged.count;
+
+    const latencyScore = clamp01((250 - avgLatency) / 200); // 50ms ->1, 250ms ->0
+    const retryScore = clamp01(1 - avgRetries / 3); // retries 0->1, 3+ ->0
+    const reliabilityScore = clamp01(avgReliability); // already 0-1 weights
+
+    const commScore = 0.5 * latencyScore + 0.2 * retryScore + 0.3 * reliabilityScore;
+    return Number(commScore.toFixed(3));
+  }
+
+  // Fallback to distance tiers if no telemetry available
   if (a === b) return 1;
   const ca = REGION_COORDS[a];
   const cb = REGION_COORDS[b];
   if (ca && cb) {
     const d = haversineKm(ca, cb);
-    if (d <= 800) return 0.9; // neighboring regions
-    if (d <= 2000) return 0.75; // same continent-ish
-    if (d <= 5000) return 0.5; // moderate distance
-    return 0.2; // far
+    if (d <= 800) return 0.9;
+    if (d <= 2000) return 0.75;
+    if (d <= 5000) return 0.5;
+    return 0.2;
   }
-  return 0.5; // fallback when coords missing
+  return 0.5;
 }
 
 function ageCompatible(a, b) {
@@ -373,6 +457,32 @@ app.post("/api/chat-top", async (req, res) => {
   }
 });
 
+app.get("/api/region-comms", (_req, res) => {
+  const rows = Array.from(telemetryStats.entries()).map(([key, v]) => {
+    const [origin, dest] = key.split("->");
+    const avgLatency = v.sumLatency / v.count;
+    const avgRetries = v.sumRetries / v.count;
+    const avgReliability = v.sumReliability / v.count;
+    const latencyScore = clamp01((250 - avgLatency) / 200);
+    const retryScore = clamp01(1 - avgRetries / 3);
+    const reliabilityScore = clamp01(avgReliability);
+    const commScore = Number((0.5 * latencyScore + 0.2 * retryScore + 0.3 * reliabilityScore).toFixed(3));
+
+    return {
+      origin,
+      dest,
+      avgLatency: Number(avgLatency.toFixed(1)),
+      avgRetries: Number(avgRetries.toFixed(2)),
+      avgReliability: Number(avgReliability.toFixed(2)),
+      commScore,
+      count: v.count,
+    };
+  });
+
+  rows.sort((a, b) => b.commScore - a.commScore);
+  res.json({ total: rows.length, rows });
+});
+
 app.get("/", (_req, res) => {
   res.type("html").send(renderPage());
 });
@@ -451,11 +561,11 @@ function renderPage() {
       <li>Interests: more shared interests raises the score; no overlap lowers it.</li>
       <li>Personality: we compare five traits (O-C-E-A-N); closer profiles score higher.</li>
       <li>Sentiment: similar sentiment scores add alignment; big gaps reduce it.</li>
-      <li>Region/proximity: same region scores highest; nearby regions get a smaller boost; far regions get little. Distances are great-circle between anchor cities (e.g., London, Dublin, Amsterdam, Tokyo, Sydney).</li>
+      <li>Region/proximity: driven by messaging telemetry (latency/retries/reliability) between regions; falls back to distance tiers if no data.</li>
       <li>Age fit: when enabled, both people must be inside each other’s preferred age range.</li>
       <li>Dealbreakers: enforced where data allows (e.g., “different_timezone” blocks cross-region, “age_gap” blocks >10-year gaps). Applied before scoring.</li>
     </ul>
-    <p>Weights: 35% interests, 30% personality, 15% sentiment, 20% region/proximity. Use the sidebar to change minimum score, age rule, and region filtering.</p>
+    <p>Weights: 35% interests, 30% personality, 15% sentiment, 20% region/proximity (telemetry-first). Use the sidebar to change minimum score, age rule, and region filtering.</p>
   </div>
 
   <div class="layout">
@@ -463,6 +573,7 @@ function renderPage() {
       <div class="nav-bar">
         <button id="navMatches" class="active" data-target="matchSection">Matches for selected user</button>
         <button id="navTop" data-target="topSection">Top match per user</button>
+        <button id="navComms" data-target="regionSection">Region comms</button>
       </div>
     </div>
 
@@ -549,6 +660,24 @@ function renderPage() {
               <div id="chatTopAnswer" style="margin-top:0.5rem; color: #0b1224; font-weight:600;"></div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div id="regionSection" class="section hidden">
+        <div class="card" id="regionCard">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+            <strong>Region communication overview</strong>
+            <button id="refreshComms">Refresh</button>
+          </div>
+          <div id="commsSummary" style="margin-top:0.25rem;"></div>
+          <table style="width:100%;border-collapse:collapse;margin-top:0.5rem;">
+            <thead>
+              <tr>
+                <th>Origin</th><th>Destination</th><th>Comm score</th><th>Avg latency (ms)</th><th>Avg retries</th><th>Reliability</th><th>Samples</th>
+              </tr>
+            </thead>
+            <tbody id="commsTable"></tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -651,6 +780,7 @@ document.getElementById('refresh').addEventListener('click', loadMatches);
 document.getElementById('user').addEventListener('change', loadMatches);
 document.getElementById('refreshTop').addEventListener('click', loadTopOverview);
 document.getElementById('chatSend').addEventListener('click', sendChat);
+document.getElementById('refreshComms').addEventListener('click', loadRegionComms);
 document.querySelectorAll('.pill').forEach((p) => {
   p.addEventListener('click', () => {
     const prompt = p.getAttribute('data-prompt');
@@ -695,6 +825,32 @@ async function sendChat() {
   }
 }
 
+async function loadRegionComms() {
+  const res = await fetch('/api/region-comms');
+  const data = await res.json();
+  renderRegionComms(data);
+}
+
+function renderRegionComms({ total, rows }) {
+  const summary = document.getElementById('commsSummary');
+  summary.textContent = 'Pairs with telemetry: ' + total + '. Higher comm score means better messaging between regions.';
+  const tbody = document.getElementById('commsTable');
+  tbody.innerHTML = rows
+    .map(
+      (r) =>
+        '<tr>' +
+        '<td>' + r.origin + '</td>' +
+        '<td>' + r.dest + '</td>' +
+        '<td>' + r.commScore + '</td>' +
+        '<td>' + r.avgLatency + '</td>' +
+        '<td>' + r.avgRetries + '</td>' +
+        '<td>' + r.avgReliability + '</td>' +
+        '<td>' + r.count + '</td>' +
+        '</tr>'
+    )
+    .join('');
+}
+
 async function sendChatTop() {
   const question = document.getElementById('chatTopQuestion').value.trim();
   const answerBox = document.getElementById('chatTopAnswer');
@@ -721,7 +877,7 @@ async function sendChatTop() {
 }
 
 function setSection(targetId) {
-  const sections = ["matchSection", "topSection"];
+  const sections = ["matchSection", "topSection", "regionSection"];
   sections.forEach((id) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -732,7 +888,7 @@ function setSection(targetId) {
     }
   });
 
-  const buttons = ["navMatches", "navTop"];
+  const buttons = ["navMatches", "navTop", "navComms"];
   buttons.forEach((btnId) => {
     const b = document.getElementById(btnId);
     if (!b) return;
@@ -756,10 +912,14 @@ function setSection(targetId) {
   if (targetId === 'topSection') {
     loadTopOverview();
   }
+  if (targetId === 'regionSection') {
+    loadRegionComms();
+  }
 }
 
 document.getElementById('navMatches').addEventListener('click', () => setSection('matchSection'));
 document.getElementById('navTop').addEventListener('click', () => setSection('topSection'));
+document.getElementById('navComms').addEventListener('click', () => setSection('regionSection'));
 </script>
 </body>
 </html>`;
