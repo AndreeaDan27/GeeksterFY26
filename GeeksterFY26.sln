@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "couplechoc", "couplechoc", "{E2022552-8933-3267-EFFF-EC53A0EAD496}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server-dotnet", "server-dotnet", "{5AA4ED80-5E58-4549-ABD1-BE3FE3B125C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoupleChocApi", "couplechoc\server-dotnet\CoupleChocApi.csproj", "{2BB259E7-5E91-7713-DA99-1A3BC79B2A87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BB259E7-5E91-7713-DA99-1A3BC79B2A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BB259E7-5E91-7713-DA99-1A3BC79B2A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BB259E7-5E91-7713-DA99-1A3BC79B2A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BB259E7-5E91-7713-DA99-1A3BC79B2A87}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5AA4ED80-5E58-4549-ABD1-BE3FE3B125C9} = {E2022552-8933-3267-EFFF-EC53A0EAD496}
+		{2BB259E7-5E91-7713-DA99-1A3BC79B2A87} = {5AA4ED80-5E58-4549-ABD1-BE3FE3B125C9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15F049D4-464E-4AA8-98E7-AE0E09AFAEA6}
+	EndGlobalSection
+EndGlobal
