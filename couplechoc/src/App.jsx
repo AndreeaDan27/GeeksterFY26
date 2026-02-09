@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { AiProviderProvider } from "./context/AiProviderContext";
 import Welcome from "./components/Welcome";
 import CupidLeaderboard from "./components/CupidLeaderboard";
 import ChocolatePairing from "./components/ChocolatePairing";
 import MemoryCard from "./components/MemoryCard";
 import ChatBubble from "./components/ChatBubble";
+import AiProviderToggle from "./components/AiProviderToggle";
 import "./App.css";
 
 const PHASES = ["welcome", "leaderboard", "pairing", "memory"];
@@ -24,9 +26,15 @@ export default function App() {
   const goTo = (p) => setPhase(p);
 
   return (
-    <div className="app">
-      {/* Progress bar */}
-      {phase !== "welcome" && (
+    <AiProviderProvider>
+      <div className="app">
+        {/* AI Provider Toggle */}
+        <div className="ai-toggle-header">
+          <AiProviderToggle />
+        </div>
+
+        {/* Progress bar */}
+        {phase !== "welcome" && (
         <div className="progress-bar">
           {PHASES.slice(1).map((p, i) => (
             <div
@@ -95,5 +103,6 @@ export default function App() {
         />
       )}
     </div>
+    </AiProviderProvider>
   );
 }

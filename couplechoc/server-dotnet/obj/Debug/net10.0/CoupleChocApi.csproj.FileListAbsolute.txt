@@ -45,3 +45,4 @@ D:\repos\GeeksterFY26_1\GeeksterFY26\couplechoc\server-dotnet\obj\Debug\net10.0\
 D:\repos\GeeksterFY26_1\GeeksterFY26\couplechoc\server-dotnet\obj\Debug\net10.0\CoupleChocApi.pdb
 D:\repos\GeeksterFY26_1\GeeksterFY26\couplechoc\server-dotnet\obj\Debug\net10.0\CoupleChocApi.genruntimeconfig.cache
 D:\repos\GeeksterFY26_1\GeeksterFY26\couplechoc\server-dotnet\obj\Debug\net10.0\ref\CoupleChocApi.dll
+D:\repos\GeeksterFY26_1\GeeksterFY26\couplechoc\server-dotnet\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

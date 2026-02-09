@@ -1,0 +1,344 @@
+[
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.AiEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAiEndpoints\u003Eb__0_2",
+    "RelativePath": "api/challenge",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "CoupleChocApi.Models.ChallengeRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.AiEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAiEndpoints\u003Eb__0_0",
+    "RelativePath": "api/chat",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "CoupleChocApi.Models.ChatRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.AiEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAiEndpoints\u003Eb__0_5",
+    "RelativePath": "api/conversation-prompt",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.DataEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapDataEndpoints\u003Eb__0_2",
+    "RelativePath": "api/flavors/top",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "limit",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CoupleChocApi.Models.FlavorStat, CoupleChocApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.DataEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapDataEndpoints\u003Eb__0_3",
+    "RelativePath": "api/fun-facts",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "CoupleChocApi.Models.SalesFunFacts",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.AiEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAiEndpoints\u003Eb__0_4",
+    "RelativePath": "api/gift-recommend",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "CoupleChocApi.Models.GiftRecommendRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.DataEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapDataEndpoints\u003Eb__0_4",
+    "RelativePath": "api/gifts",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "persona",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CoupleChocApi.Models.Gift, CoupleChocApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.MatchEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapMatchEndpoints\u003Eb__0_1",
+    "RelativePath": "api/matches/explain",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "CoupleChocApi.Models.MatchExplainRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.MatchEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapMatchEndpoints\u003Eb__0_0",
+    "RelativePath": "api/matches/top-couples",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "limit",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CoupleChocApi.Models.CoupleResult, CoupleChocApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.AiEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAiEndpoints\u003Eb__0_6",
+    "RelativePath": "api/memory-card",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "CoupleChocApi.Models.MemoryCardRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.AiEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAiEndpoints\u003Eb__0_1",
+    "RelativePath": "api/pairing",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "CoupleChocApi.Models.PairingRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.DataEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapDataEndpoints\u003Eb__0_0",
+    "RelativePath": "api/products",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CoupleChocApi.Models.Product, CoupleChocApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.DataEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapDataEndpoints\u003Eb__0_1",
+    "RelativePath": "api/products/with-stock",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CoupleChocApi.Models.ProductWithStock, CoupleChocApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.DataEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapDataEndpoints\u003Eb__0_5",
+    "RelativePath": "api/profiles/random",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "n",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CoupleChocApi.Models.MatchmakingProfile, CoupleChocApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.AiEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAiEndpoints\u003Eb__0_3",
+    "RelativePath": "api/quest",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "CoupleChocApi.Models.QuestRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CoupleChocApi.Endpoints.AiEndpoints\u002B\u003C\u003Ec",
+    "Method": "\u003CMapAiEndpoints\u003Eb__0_7",
+    "RelativePath": "api/ship-gifts",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "CoupleChocApi.Models.ShipGiftsRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import { sendChat } from "../services/api";
+import { useAiProvider } from "../hooks/useAiProvider";
 import { ChatMarkdownComponents } from "./shared/MarkdownRenderers";
 
 export default function ChatBubble({ isOpen, onToggle, player1, player2 }) {
+  const { ai } = useAiProvider();
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -34,12 +35,12 @@ export default function ChatBubble({ isOpen, onToggle, player1, player2 }) {
 
       const context = `Couple profile — ${player1.name}: interests=${player1.interests.join(",")}, vibe=${player1.vibe}. ${player2.name}: interests=${player2.interests.join(",")}, vibe=${player2.vibe}.`;
 
-      const result = await sendChat(apiMessages, context);
+      const result = await ai.sendChat(apiMessages, context);
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: result.reply },
       ]);
-    } catch (err) {
+    } catch {
       setMessages((prev) => [
         ...prev,
         {

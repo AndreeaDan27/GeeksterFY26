@@ -1,23 +1,20 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
-import { getMemoryCard } from "../services/api";
+import { useAiProvider } from "../hooks/useAiProvider";
 import Confetti from "react-confetti";
 import { MemoryMarkdownComponents } from "./shared/MarkdownRenderers";
 
 export default function MemoryCard({ player1, player2, highlights, onRestart }) {
+  const { ai } = useAiProvider();
   const [card, setCard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showConfetti, setShowConfetti] = useState(false);
   const cardRef = useRef(null);
 
-  useEffect(() => {
-    loadCard();
-  }, []);
-
-  const loadCard = async () => {
+  const loadCard = useCallback(async () => {
     setLoading(true);
     try {
-      const result = await getMemoryCard(
+      const result = await ai.getMemoryCard(
         player1.name,
         player2.name,
         highlights.join("; ")
@@ -31,14 +28,20 @@ export default function MemoryCard({ player1, player2, highlights, onRestart }) 
     } finally {
       setLoading(false);
     }
-  };
+  }, [ai, player1.name, player2.name, highlights]);
+
+  useEffect(() => {
+    loadCard();
+  }, [loadCard]);
 
   const handleShare = async () => {
     const text = `🍫 CoupleChoc Memory Card 🍫\n\n${card}\n\n${player1.name} & ${player2.name}\nFebruary 6, 2026`;
     if (navigator.share) {
       try {
         await navigator.share({ title: "CoupleChoc Memory", text });
-      } catch {}
+      } catch {
+        // User cancelled share or share failed silently
+      }
     } else {
       await navigator.clipboard.writeText(text);
       alert("Memory card copied to clipboard! 📋");

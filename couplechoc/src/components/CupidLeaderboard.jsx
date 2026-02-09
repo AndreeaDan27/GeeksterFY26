@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { getTopCouples, getMatchExplanation } from "../services/api";
+import { getTopCouples } from "../services/api";
+import { useAiProvider } from "../hooks/useAiProvider";
 
 const VIBE_EMOJI = {
   adventurous: "🎉",
@@ -8,6 +9,7 @@ const VIBE_EMOJI = {
 };
 
 export default function CupidLeaderboard({ onSelect }) {
+  const { ai } = useAiProvider();
   const [couples, setCouples] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,7 +34,7 @@ export default function CupidLeaderboard({ onSelect }) {
     setExplanation(null);
     setExplaining(true);
     try {
-      const res = await getMatchExplanation(
+      const res = await ai.getMatchExplanation(
         couple.player1,
         couple.player2,
         couple.score,

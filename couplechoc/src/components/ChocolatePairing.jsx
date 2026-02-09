@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
-import { getPairing, getConversationPrompt, shipGifts } from "../services/api";
+import { shipGifts } from "../services/api";
+import { useAiProvider } from "../hooks/useAiProvider";
 import { MarkdownComponents, InlineMarkdownComponents } from "./shared/MarkdownRenderers";
 
 export default function ChocolatePairing({ player1, player2, onComplete }) {
+  const { ai } = useAiProvider();
   const [pairing, setPairing] = useState(null);
   const [loading, setLoading] = useState(true);
   const [conversationPrompt, setConversationPrompt] = useState(null);
@@ -11,27 +13,27 @@ export default function ChocolatePairing({ player1, player2, onComplete }) {
   const [shipmentStatus, setShipmentStatus] = useState(null); // null, 'shipping', 'shipped'
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    loadPairing();
-  }, []);
-
-  const loadPairing = async () => {
+  const loadPairing = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const result = await getPairing(player1, player2);
+      const result = await ai.getPairing(player1, player2);
       setPairing(result.pairing);
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
-  };
+  }, [ai, player1, player2]);
+
+  useEffect(() => {
+    loadPairing();
+  }, [loadPairing]);
 
   const loadConversationPrompt = async () => {
     setPromptLoading(true);
     try {
-      const result = await getConversationPrompt();
+      const result = await ai.getConversationPrompt();
       setConversationPrompt(result.prompt);
     } catch (err) {
       console.error("Failed to load conversation prompt:", err);
@@ -45,10 +47,10 @@ export default function ChocolatePairing({ player1, player2, onComplete }) {
       // Auto-generate a conversation prompt first
       setPromptLoading(true);
       try {
-        const result = await getConversationPrompt();
+        const result = await ai.getConversationPrompt();
         setConversationPrompt(result.prompt);
         await performShipment(result.prompt);
-      } catch (err) {
+      } catch {
         setError("Failed to generate gift message. Please try again.");
         setPromptLoading(false);
       }

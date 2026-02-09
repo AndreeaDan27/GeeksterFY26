@@ -39,7 +39,7 @@ public static class AiEndpoints
         group.MapPost("/challenge", async (ChallengeRequest req, IDataService data, IOpenAIService openai) =>
         {
             var products = data.GetProducts();
-            var randomProducts = products.OrderBy(_ => Random.Shared.Next()).Take(5).ToList();
+            var randomProducts = products.OrderBy(_ => Random.Shared.Next()).Take(25).ToList();
 
             var dataContext = PromptTemplates.ChallengeDataContext(randomProducts);
             var prompt = PromptTemplates.Challenge(req);

@@ -86,7 +86,7 @@ public class DataService : IDataService
 
     // ── Derived helpers ────────────────────────────────────
 
-    public List<FlavorStat> GetTopFlavors(int limit = 10)
+    public List<FlavorStat> GetTopFlavors(int limit = 100)
     {
         var products = GetProducts();
         var sales = GetSales();
